@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кіт - інформація та звуки</title>
+    <link rel="stylesheet" href="./style.css">
+    <script>
+        // Клас кота
+        class Cat {
+            constructor(name, weight, color, age) {
+                this.name = name;
+                this.weight = weight;
+                this.color = color;
+                this.age = age;
+            }
+
+            // Метод для зміни властивостей кота
+            updateInfo(name, weight, color, age) {
+                if (name) this.name = name;
+                if (weight > 0) this.weight = weight;
+                if (color) this.color = color;
+                if (age > 0) this.age = age;
+            }
+
+            // Метод для виведення інформації про кота
+            getInfo() {
+                return `${this.name} має ${this.age} років, важить ${this.weight} кг і має ${this.color} шерсть.`;
+            }
+
+            // Метод для видавання звуку "мяу"
+            meow() {
+                alert(`${this.name} каже: Мяу!`);
+            }
+        }
+
+        let cat = new Cat("Пухнастик", 5, "сірий", 4);
+
+        // Функція для оновлення інформації кота
+        function updateCat() {
+            const name = document.getElementById('name').value;
+            const weight = parseFloat(document.getElementById('weight').value);
+            const color = document.getElementById('color').value;
+            const age = parseInt(document.getElementById('age').value);
+
+            cat.updateInfo(name, weight, color, age);
+            displayCatInfo();
+        }
+
+        // Функція для виведення інформації про кота
+        function displayCatInfo() {
+            document.getElementById('catInfo').innerText = cat.getInfo();
+        }
+
+        // Відображення початкової інформації
+        window.onload = function() {
+            displayCatInfo();
+        }
+    </script>
+</head>
+<body>
+    <div class="main-container">
+        <h1>Інформація про кота</h1>
+        <div id="catInfo" class="cat-info"></div>
+        <div class="form-container">
+            <input type="text" id="name" placeholder="Ім'я кота">
+            <input type="number" id="weight" placeholder="Вага кота (кг)">
+            <input type="text" id="color" placeholder="Колір кота">
+            <input type="number" id="age" placeholder="Вік кота (років)">
+            <button class="btn" onclick="updateCat()">Оновити інформацію</button>
+            <button class="btn" onclick="cat.meow()">Сказати Мяу</button>
+        </div>
+    </div>
+</body>
+</html>
